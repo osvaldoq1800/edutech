@@ -1,10 +1,12 @@
 package com.example.edutech.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 // Corrige la importación: debe ser con 'Id' con mayúscula y sin la línea extra incorrecta
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -32,5 +34,11 @@ public class Curso {
     private LocalDate fechaFin;     // Fecha de finalización
     
     private boolean disponible;     // Indica si el curso está disponible
+
+    
+    // Lista de contenidos asociados a este curso (relación uno a muchos)
+    // El atributo "curso" en la clase Contenido es el propietario de la relación
+    @OneToMany(mappedBy = "curso") 
+    private List<Contenido> contenidos;
     
 }
